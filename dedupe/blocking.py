@@ -73,6 +73,9 @@ class Blocker:
             for _, index, preprocess in indices :
                 index.index(preprocess(doc))
 
+        import transaction
+        transaction.commit()
+
         for index_type, index, _ in indices :
 
             index.initSearch()
