@@ -66,7 +66,7 @@ class ExistsPredicate(Predicate) :
 
 class IndexPredicate(Predicate) :
     def __init__(self, threshold, field):
-        self.__name__ = '(%s: %s, %s)' % (type(self).__name__, threshold, field)
+        self.__name__ = '(%s, %s)' % (threshold, field)
         self.field = field
         self.threshold = threshold
         self.index = None
@@ -85,7 +85,7 @@ class IndexPredicate(Predicate) :
 
 class TfidfIndexPredicate(IndexPredicate) :
     def initIndex(self, stop_words) :
-        return tfidf.TfIdfIndex(stop_words, self.__name__)
+        return tfidf.TfIdfIndex(stop_words, repr(self))
     
 
 class TfidfSearchPredicate(TfidfIndexPredicate):
